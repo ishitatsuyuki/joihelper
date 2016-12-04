@@ -150,7 +150,7 @@ func main() {
 			cmd := exec.Cmd{Path: *executable, Stdin: input, Stdout: output, Stderr: os.Stderr}
 			err := cmd.Run()
 			if err != nil {
-				color.Red("Execution FAILED in test %d: %s", fmt.Errorf("%v", err))
+				color.Red("Execution FAILED in test %d: %s", i+1, fmt.Errorf("%v", err))
 				goto wait
 			}
 			if bytes.Equal(output.Bytes(), sampleOutputs[i]) {
@@ -194,7 +194,7 @@ func main() {
 		cmd := exec.Cmd{Path: *executable, Stdin: input, Stdout: output, Stderr: os.Stderr}
 		err := cmd.Run()
 		if err != nil {
-			color.Red("Execution FAILED in input %d: %s", fmt.Errorf("%v", err))
+			color.Red("Execution FAILED in input %d: %s", i+1, fmt.Errorf("%v", err))
 			panic(err)
 		}
 		outputs[i] = output.Bytes()
